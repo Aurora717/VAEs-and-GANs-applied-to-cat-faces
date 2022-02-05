@@ -15,8 +15,17 @@ codings results in an output that looks similar to the input, hence, generating 
 new data.
 
 The arhitecture of VAEs is illustrated in the figure below:
+<img width="730" alt="vae_arch" src="https://user-images.githubusercontent.com/49812606/152656489-b6cbaf47-cab2-4f23-ba50-75b19d78fda0.png">
 
+The network consists of an encoder which outputs a the parameters for the conditional distribution a lower dimensional latent vector z, namely the mean and standard deviation. The Decoder takes in a sample z and outputs the parameter for the distribution of the observation. Thet output activation is sigmoid. The loss function is used is the binary cross-entropy with the Kullback–Leibler divergence as the regularization term.
 
+For our implementation we used a dataset of cat face images, the dataset consists of 15747 images, where each image has a size of 64 x 64 x 3 (RGB).The dataset was obtained from kaggle which can be accessed from the following link https://www.kaggle.com/spandan2/cats-faces-64x64-for-generative-models
+
+![cats](https://user-images.githubusercontent.com/49812606/152656647-a93ebd91-162a-4a88-9640-3ee676ccdf5a.png)
+
+### Results:
+<img width="400" alt="Screenshot 2022-02-05 at 21 53 11" src="https://user-images.githubusercontent.com/49812606/152656809-f1c447f6-fe27-43e0-b355-25466a4108ea.png">
+![vae_generated_plot_e050_run1](https://user-images.githubusercontent.com/49812606/152656709-ef9c3f07-19a1-4254-b86b-7a21e04af8bb.png)
 
 ## Generative Adversarial Networks (GANS):
 As the name suggests, Generative Adversarial Networks are also a type of a generative model. However, they work in quite a different matter than VAEs.
@@ -30,3 +39,16 @@ generator network. In this phase, we are basically teaching the discriminator wh
 phase, where we train the generator. In particular, the generator never gets to deal with the real images, the input of the network is a latent representation  
 . Initially this representation can be just a random Gaussian distribution, as the network competes with the discriminator, 
 it learns the nature of images that can fool it, ultimately leading the generator to learn the underlying latent space of the training images.
+
+The arhitecture of GANs is illustrated in the figure below:
+<img width="653" alt="gans_arch" src="https://user-images.githubusercontent.com/49812606/152656870-efda6347-d896-48fb-a6d5-d669708e89c1.png">
+
+The network consists of a generator that generates images and a discriminator that tells whether an image is real. The loss function for both is modules binary crossentropy, with Adam as the optimizer.
+
+### Results:
+<img width="547" alt="Screenshot 2022-02-05 at 21 59 57" src="https://user-images.githubusercontent.com/49812606/152657008-20c47481-9cef-472d-ac4b-41d863c61ba3.png">
+<img width="546" alt="Screenshot 2022-02-05 at 22 00 06" src="https://user-images.githubusercontent.com/49812606/152657010-cb49b1c2-85dd-4bfc-b7b9-158ce6019609.png">
+
+![gans_generated_plot_e150_run2](https://user-images.githubusercontent.com/49812606/152656955-539e7771-4ce0-4a61-95ac-5e6841b8c15a.png)
+
+
